@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
+
+.mandala-pattern {
+  background-image: url("https://images.unsplash.com/photo-1582126892906-5ba111b3c9dd?auto=format&fit=crop&q=80");
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: overlay;
+}
+
+.lotus-divider {
+  background-image: url("https://images.unsplash.com/photo-1528696892704-5e1122852276?auto=format&fit=crop&q=80");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 60px;
+  opacity: 0.2;
+  margin: 2rem 0;
+}
