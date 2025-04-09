@@ -58,7 +58,7 @@ function Contact() {
 
       {/* Contact Content */}
       <div className="max-w-6xl mx-auto px-4 py-24">
-        <div className="grid lg:grid-cols-2 gap-16">
+        <div className="grid lg:grid-cols-2 gap-10 md:gap-16">
           {/* Contact Information */}
           <div>
             <h2 className="text-4xl font-['Cormorant_Garamond'] text-sage-900 mb-12">
@@ -135,7 +135,7 @@ function Contact() {
             <div className="rounded-3xl overflow-hidden shadow-lg border border-sage-100 h-[400px]">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3104.099723663753!2d-77.0350186!3d38.9216981!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b7b7de75b9db7d%3A0xefceef9fe243ffa6!2sSri%20Sri%20Tattva%20USA!5e0!3m2!1sen!2sin!4v1744125683394!5m2!1sen!2sin"
-                width="600"
+                width="100%"
                 height="450"
                 style={{ border: 0 }}
                 allowFullScreen

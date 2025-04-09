@@ -26,6 +26,7 @@ import Services from "./pages/Services";
 import Reviews from "./pages/Reviews";
 import Contact from "./pages/Contact";
 import BookingModal from "./components/BookingModal";
+import ScrollToTop from "./components/ScrolltoTop";
 
 function LocationDropdown() {
   const [isOpen, setIsOpen] = useState(false);
@@ -70,13 +71,18 @@ function LocationDropdown() {
   );
 }
 
-function MobileLocationDropdown() {
+function MobileLocationDropdown({ onSelect }: { onSelect?: () => void }) {
   const navigate = useNavigate();
+
+  const handleClick = (location: string) => {
+    navigate(`/services?location=${location}`);
+    onSelect?.(); // call the callback to close both menus
+  };
 
   return (
     <div className="space-y-2 pl-4 mt-2 border-l border-sage-700">
       <button
-        onClick={() => navigate("/services?location=newyork")}
+        onClick={() => handleClick("newyork")}
         className="block w-full text-left text-sage-200 hover:text-emerald-300 transition-colors"
       >
         New York
@@ -84,7 +90,6 @@ function MobileLocationDropdown() {
       <button
         disabled
         className="block w-full text-left text-sage-500 cursor-not-allowed"
-        // className="block w-full text-left text-sage-200 hover:text-emerald-300 transition-colors"
       >
         California
       </button>
@@ -115,7 +120,7 @@ function Home() {
           <img
             src="logo.jpeg"
             alt="Logo"
-            className="w-40 h-20 mx-auto mb-8  text-emerald-400"
+            className="w-40 h-20 mx-auto mb-8 mt-16 sm:mt-10 text-emerald-400"
           />
           <h1 className="text-5xl md:text-7xl font-['Cormorant_Garamond'] mb-6 tracking-wide">
             Sri Sri Tattva Wellness
@@ -124,7 +129,7 @@ function Home() {
             Restore • Rebalance • Rejuvenate
           </p>
           <p className="text-xl md:text-2xl mb-8 text-emerald-200">
-            Authentic Ayurvedic Healing in New Jersey
+            Authentic Ayurvedic Healing in New Jersey and California
           </p>
           <p className="text-lg md:text-xl mb-12 text-sage-200 max-w-3xl mx-auto leading-relaxed">
             At Sri Sri Tattva Wellness, we bring the ancient wisdom of Ayurveda
@@ -136,7 +141,7 @@ function Home() {
           </p>
           <button
             onClick={() => handleBookNow()}
-            className="bg-emerald-700 hover:bg-emerald-800 text-sage-50 px-10 py-5 rounded-full text-lg font-medium transition-all hover:shadow-xl hover:scale-105 flex items-center gap-2 mx-auto border border-emerald-600/30"
+            className="bg-emerald-700 hover:bg-emerald-800 text-sage-50 px-10 py-5 rounded-full text-lg font-medium transition-all hover:shadow-xl hover:scale-105 flex items-center gap-2 mx-auto border border-emerald-600/30 mb-12"
           >
             Begin Your Journey <ArrowRight className="w-5 h-5" />
           </button>
@@ -305,25 +310,20 @@ function App() {
 
               {/* Desktop Navigation */}
               <div className="hidden md:flex items-center gap-8">
-                <Link
-                  to="/about"
-                  className="text-sage-200 hover:text-emerald-300 transition-colors"
-                >
-                  About Us
-                </Link>
                 <LocationDropdown />
+
                 <Link
                   to="/reviews"
                   className="text-sage-200 hover:text-emerald-300 transition-colors"
                 >
                   Reviews
                 </Link>
-                {/* <Link
-                  to="/blog"
+                <Link
+                  to="/about"
                   className="text-sage-200 hover:text-emerald-300 transition-colors"
                 >
-                  Blog
-                </Link> */}
+                  About Us
+                </Link>
                 <Link
                   to="/contact"
                   className="text-sage-200 hover:text-emerald-300 transition-colors"
@@ -361,40 +361,48 @@ function App() {
             {isMenuOpen && (
               <div className="md:hidden py-4 border-t border-sage-800">
                 <div className="flex flex-col gap-4">
-                  <Link
-                    to="/about"
-                    className="text-sage-200 hover:text-emerald-300 transition-colors"
-                  >
-                    About Us
-                  </Link>
                   <div>
                     <button
-                      onClick={() => setIsServicesOpen(!isServicesOpen)}
+                      onClick={() => {
+                        setIsServicesOpen(true);
+                      }}
                       className="flex items-center gap-1 text-sage-200 hover:text-emerald-300 transition-colors"
                     >
-                      Services{" "}
+                      Services
                       <ChevronDown
                         className={`w-4 h-4 transition-transform ${
                           isServicesOpen ? "rotate-180" : ""
                         }`}
                       />
                     </button>
-                    {isServicesOpen && <MobileLocationDropdown />}
+
+                    {isServicesOpen && (
+                      <MobileLocationDropdown
+                        onSelect={() => {
+                          setIsServicesOpen(false);
+                          setIsMenuOpen(false);
+                        }}
+                      />
+                    )}
                   </div>
+
                   <Link
                     to="/reviews"
+                    onClick={() => setIsMenuOpen(false)}
                     className="text-sage-200 hover:text-emerald-300 transition-colors"
                   >
                     Reviews
                   </Link>
-                  {/* <Link
-                    to="/blog"
+                  <Link
+                    to="/about"
+                    onClick={() => setIsMenuOpen(false)}
                     className="text-sage-200 hover:text-emerald-300 transition-colors"
                   >
-                    Blog
-                  </Link> */}
+                    About Us
+                  </Link>
                   <Link
                     to="/contact"
+                    onClick={() => setIsMenuOpen(false)}
                     className="text-sage-200 hover:text-emerald-300 transition-colors"
                   >
                     Contact
@@ -413,6 +421,7 @@ function App() {
             )}
           </div>
         </nav>
+        <ScrollToTop />
 
         <Routes>
           <Route path="/" element={<Home />} />
@@ -450,8 +459,8 @@ function App() {
                 </div>
                 <p className="text-sage-300 text-sm leading-relaxed">
                   Authentic Ayurvedic healing and wellness services in New
-                  Jersey. Experience traditional therapies for modern
-                  well-being.
+                  Jersey and California. Experience traditional therapies for
+                  modern well-being.
                 </p>
               </div>
 
@@ -470,12 +479,7 @@ function App() {
                     </Link>
                   </li>
                   <li>
-                    <Link
-                      to="/services"
-                      className="text-sage-300 hover:text-emerald-400 transition-colors"
-                    >
-                      Our Services
-                    </Link>
+                    <LocationDropdown />
                   </li>
                   <li>
                     <Link
