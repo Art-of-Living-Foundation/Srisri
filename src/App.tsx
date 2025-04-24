@@ -15,25 +15,31 @@ import {
   X,
   ChevronDown,
 } from "lucide-react";
-import {
-  FaFacebookF,
-  FaInstagram,
-  FaTwitter,
-  FaLinkedinIn,
-} from "react-icons/fa6";
+// import {
+//   FaFacebookF,
+//   FaInstagram,
+//   FaTwitter,
+//   FaLinkedinIn,
+// } from "react-icons/fa6";
 import About from "./pages/About";
 import Services from "./pages/Services";
+import CalServices from "./pages/calservices";
 import Reviews from "./pages/Reviews";
 import Contact from "./pages/Contact";
 import BookingModal from "./components/BookingModal";
 import ScrollToTop from "./components/ScrolltoTop";
+import LocationPickerButton from "./components/LocationPicker";
 
 function LocationDropdown() {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleLocationSelect = (location: string) => {
-    navigate(`/services?location=${location}`);
+    if (location === "newjersey") {
+      navigate("/services-newjersey");
+    } else if (location === "california") {
+      navigate("/services-california");
+    }
     setIsOpen(false);
   };
 
@@ -54,16 +60,17 @@ function LocationDropdown() {
       {isOpen && (
         <div className="absolute top-full left-0 mt-2 w-48 bg-sage-800 rounded-xl shadow-lg py-2 z-50">
           <button
-            onClick={() => handleLocationSelect("newyork")}
+            onClick={() => handleLocationSelect("newjersey")}
             className="w-full text-left px-4 py-2 text-sage-200 hover:bg-sage-700 hover:text-emerald-300 transition-colors"
           >
             New Jersey
           </button>
           <button
-            disabled
-            className="w-full text-left px-4 py-2 text-sage-500 cursor-not-allowed"
+            // disabled
+            onClick={() => handleLocationSelect("california")}
+            className="w-full text-left px-4 py-2 text-sage-200 hover:bg-sage-700 hover:text-emerald-300 transition-colors"
           >
-            California (Coming Soon)
+            California
           </button>
         </div>
       )}
@@ -75,21 +82,25 @@ function MobileLocationDropdown({ onSelect }: { onSelect?: () => void }) {
   const navigate = useNavigate();
 
   const handleClick = (location: string) => {
-    navigate(`/services?location=${location}`);
+    if (location === "newjersey") {
+      navigate("/services-newjersey");
+    } else if (location === "california") {
+      navigate("/services-california");
+    }
     onSelect?.(); // call the callback to close both menus
   };
 
   return (
     <div className="space-y-2 pl-4 mt-2 border-l border-sage-700">
       <button
-        onClick={() => handleClick("newyork")}
+        onClick={() => handleClick("newjersey")}
         className="block w-full text-left text-sage-200 hover:text-emerald-300 transition-colors"
       >
-        New York
+        New Jersey
       </button>
       <button
-        disabled
-        className="block w-full text-left text-sage-500 cursor-not-allowed"
+        onClick={() => handleClick("california")}
+        className="block w-full text-left text-sage-200 hover:text-emerald-300 transition-colors"
       >
         California
       </button>
@@ -98,13 +109,13 @@ function MobileLocationDropdown({ onSelect }: { onSelect?: () => void }) {
 }
 
 function Home() {
-  const [isBookingOpen, setIsBookingOpen] = useState(false);
-  const [selectedService, setSelectedService] = useState("");
+  // const [isBookingOpen, setIsBookingOpen] = useState(false);
+  // const [selectedService, setSelectedService] = useState("");
 
-  const handleBookNow = (service: string = "General Consultation") => {
-    setSelectedService(service);
-    setIsBookingOpen(true);
-  };
+  // const handleBookNow = (service: string = "General Consultation") => {
+  //   setSelectedService(service);
+  //   setIsBookingOpen(true);
+  // };
 
   return (
     <>
@@ -118,7 +129,7 @@ function Home() {
         <div className="absolute inset-0 bg-gradient-to-b from-sage-900/70 to-emerald-950/70" />
         <div className="relative z-10 text-center text-sage-50 px-4 max-w-4xl mx-auto">
           <img
-            src="logo.jpeg"
+            src="Logo.png"
             alt="Logo"
             className="w-40 h-20 mx-auto mb-8 mt-16 sm:mt-10 text-emerald-400"
           />
@@ -139,12 +150,10 @@ function Home() {
             or overall well-being, our therapies are designed to nurture your
             health naturally.
           </p>
-          <button
-            onClick={() => handleBookNow()}
-            className="bg-emerald-700 hover:bg-emerald-800 text-sage-50 px-10 py-5 rounded-full text-lg font-medium transition-all hover:shadow-xl hover:scale-105 flex items-center gap-2 mx-auto border border-emerald-600/30 mb-12"
-          >
-            Begin Your Journey <ArrowRight className="w-5 h-5" />
-          </button>
+          <LocationPickerButton className="bg-emerald-700 hover:bg-emerald-800 text-sage-50 px-10 py-5 rounded-full text-lg font-medium transition-all hover:shadow-xl hover:scale-105 flex items-center gap-2 mx-auto border border-emerald-600/30 mb-12 md:mb-0">
+            Book your Appointment
+            <ArrowRight className="w-5 h-5" />
+          </LocationPickerButton>
         </div>
       </div>
 
@@ -165,11 +174,11 @@ function Home() {
           <div className="bg-sage-50/50 p-10 rounded-2xl shadow-sm border border-sage-100">
             <CheckCircle2 className="w-10 h-10 text-emerald-600 mb-6" />
             <h3 className="text-2xl font-['Cormorant_Garamond'] text-sage-900 mb-4">
-              Personalized Healing
+              Meditation-Backed Care
             </h3>
             <p className="text-lg text-sage-700">
-              Treatments tailored to your unique body constitution for optimal
-              results
+              Therapists practice Art of Living SKY breathwork & Meditation for
+              deeper healing
             </p>
           </div>
           <div className="bg-sage-50/50 p-10 rounded-2xl shadow-sm border border-sage-100">
@@ -200,7 +209,7 @@ function Home() {
         {/* Enhanced Testimonials Section */}
         <div className="bg-gradient-to-br from-sage-50 to-emerald-50 rounded-3xl p-12 shadow-sm border border-sage-100 mb-20">
           <h2 className="text-4xl font-['Cormorant_Garamond'] mb-12 text-center text-sage-900">
-            Sacred Experiences
+            Testimonials
           </h2>
           <div className="grid md:grid-cols-2 gap-12">
             {[
@@ -267,21 +276,18 @@ function Home() {
           <h2 className="text-4xl font-['Cormorant_Garamond'] mb-8 text-sage-900">
             Begin Your Path to Wellness
           </h2>
-          <button
-            onClick={() => handleBookNow()}
-            className="bg-emerald-700 hover:bg-emerald-800 text-sage-50 px-10 py-5 rounded-full text-xl font-medium transition-all hover:shadow-xl hover:scale-105 flex items-center gap-2 mx-auto border border-emerald-600/30"
-          >
+          <LocationPickerButton className="bg-emerald-700 hover:bg-emerald-800 text-sage-50 px-10 py-5 rounded-full text-xl font-medium transition-all hover:shadow-xl hover:scale-105 flex items-center gap-2 mx-auto border border-emerald-600/30">
             <Calendar className="w-6 h-6" />
-            Schedule Your Sacred Journey
-          </button>
+            Book your Appointment today
+          </LocationPickerButton>
         </div>
       </div>
 
-      <BookingModal
+      {/* <BookingModal
         isOpen={isBookingOpen}
         onClose={() => setIsBookingOpen(false)}
         service={selectedService}
-      />
+      /> */}
     </>
   );
 }
@@ -334,12 +340,9 @@ function App() {
 
               {/* Book Now Button */}
               <div className="hidden md:block">
-                <button
-                  onClick={() => setIsBookingOpen(true)}
-                  className="bg-emerald-700 hover:bg-emerald-800 px-6 py-2 rounded-full text-sm font-medium transition-all hover:shadow-lg hover:scale-105 flex items-center gap-2 border border-emerald-600/30"
-                >
+                <LocationPickerButton className="bg-emerald-700 hover:bg-emerald-800 px-6 py-2 rounded-full text-sm font-medium transition-all hover:shadow-lg hover:scale-105 flex items-center gap-2 border border-emerald-600/30 w-full justify-center mt-2">
                   Book Now <ArrowRight className="w-4 h-4" />
-                </button>
+                </LocationPickerButton>
               </div>
 
               {/* Mobile Menu Button */}
@@ -407,15 +410,12 @@ function App() {
                   >
                     Contact
                   </Link>
-                  <button
-                    onClick={() => {
-                      setIsBookingOpen(true);
-                      setIsMenuOpen(false);
-                    }}
+                  <LocationPickerButton
                     className="bg-emerald-700 hover:bg-emerald-800 px-6 py-2 rounded-full text-sm font-medium transition-all hover:shadow-lg hover:scale-105 flex items-center gap-2 border border-emerald-600/30 w-full justify-center mt-2"
+                    onSelect={() => setIsMenuOpen(false)}
                   >
                     Book Now <ArrowRight className="w-4 h-4" />
-                  </button>
+                  </LocationPickerButton>
                 </div>
               </div>
             )}
@@ -426,7 +426,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
+          <Route path="/services-newjersey" element={<Services />} />
+          <Route path="/services-california" element={<CalServices />} />
           <Route path="/reviews" element={<Reviews />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
@@ -441,18 +442,17 @@ function App() {
         <footer className="bg-sage-900 text-sage-100">
           <div className="max-w-6xl mx-auto px-4">
             {/* Main Footer Content */}
-            <div className="py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="py-12 grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* Brand Section */}
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
                   <div className="w-20 h-24 text-emerald-400">
                     <img
-                      src="logo.jpeg"
+                      src="Logo.png"
                       alt="Logo"
                       className="w-full h-full object-contain"
                     />
                   </div>
-                  {/* <Flower2 className="w-8 h-8 text-emerald-400" /> */}
                   <span className="text-xl font-['Cormorant_Garamond'] tracking-wide">
                     Sri Sri Tattva Wellness
                   </span>
@@ -464,7 +464,7 @@ function App() {
                 </p>
               </div>
 
-              {/* Quick Links */}
+              {/* Quick Links Section - now placed on the right */}
               <div>
                 <h3 className="text-lg font-semibold mb-4 text-sage-50">
                   Quick Links
@@ -498,105 +498,6 @@ function App() {
                     </Link>
                   </li>
                 </ul>
-              </div>
-
-              {/* Services */}
-              <div>
-                <h3 className="text-lg font-semibold mb-4 text-sage-50">
-                  Our Services
-                </h3>
-                <ul className="space-y-2">
-                  <li>
-                    <Link
-                      to="/services"
-                      className="text-sage-300 hover:text-emerald-400 transition-colors"
-                    >
-                      Abhyanga Massage
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/services"
-                      className="text-sage-300 hover:text-emerald-400 transition-colors"
-                    >
-                      Shirodhara Therapy
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/services"
-                      className="text-sage-300 hover:text-emerald-400 transition-colors"
-                    >
-                      Ayurvedic Consultation
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/services"
-                      className="text-sage-300 hover:text-emerald-400 transition-colors"
-                    >
-                      Specialized Treatments
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Contact Info */}
-              <div>
-                <h3 className="text-lg font-semibold mb-4 text-sage-50">
-                  Get in Touch
-                </h3>
-                <div className="space-y-4">
-                  <p className="text-sage-300">
-                    Sri Sri Tattva Wellness
-                    <br />
-                    2401 15th St NW
-                    <br />
-                    Washington, DC, 20009
-                  </p>
-                  <p className="text-sage-300">
-                    <a
-                      href="tel:732-476-4754"
-                      className="hover:text-emerald-400 transition-colors"
-                    >
-                      732-476-4754
-                    </a>
-                  </p>
-                  <div className="flex gap-4">
-                    <a
-                      href="https://facebook.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sage-300 hover:text-emerald-400 transition-colors"
-                    >
-                      <FaFacebookF className="w-5 h-5" />
-                    </a>
-                    <a
-                      href="https://instagram.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sage-300 hover:text-emerald-400 transition-colors"
-                    >
-                      <FaInstagram className="w-5 h-5" />
-                    </a>
-                    <a
-                      href="https://twitter.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sage-300 hover:text-emerald-400 transition-colors"
-                    >
-                      <FaTwitter className="w-5 h-5" />
-                    </a>
-                    <a
-                      href="https://linkedin.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sage-300 hover:text-emerald-400 transition-colors"
-                    >
-                      <FaLinkedinIn className="w-5 h-5" />
-                    </a>
-                  </div>
-                </div>
               </div>
             </div>
 

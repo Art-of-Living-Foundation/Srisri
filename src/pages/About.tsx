@@ -1,5 +1,5 @@
 import { ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import LocationPickerButton from "../components/LocationPicker";
 
 function About() {
   return (
@@ -8,10 +8,14 @@ function About() {
       <div className="relative py-12 bg-gradient-to-br from-sage-900 via-emerald-900 to-sage-900 flex justify-center text-center">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&q=80')] opacity-10 bg-cover bg-center mix-blend-overlay" />
         <div className="max-w-6xl mx-auto px-4">
-          <img src="/logo.jpeg" alt="logo" className="w-40 h-20 mx-auto mb-8" />
+          <img src="/Logo.png" alt="logo" className="w-40 h-20 mx-auto mb-8" />
           <h1 className="text-5xl md:text-6xl font-['Cormorant_Garamond'] text-sage-50 mb-6">
             Healing Through Ayurveda & Wellness
           </h1>
+          <p className="text-3xl md:text-3xl font-['Cormorant_Garamond'] text-sage-50 mb-6">
+            Now open in New Jersey and California
+          </p>
+
           <p className="text-xl text-sage-200 max-w-3xl">
             Sri Sri Tattva Wellness is founded on the principles of authentic
             Ayurveda, offering traditional treatments to support your mind,
@@ -83,21 +87,20 @@ function About() {
         </div>
 
         {/* Contact Information */}
-        <div className="bg-gradient-to-br from-sage-900 to-emerald-900 rounded-3xl p-12 text-center relative overflow-hidden">
+        <div className="bg-gradient-to-br from-sage-900 to-emerald-900 rounded-3xl p-28 text-center relative overflow-hidden">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&q=80')] opacity-10 bg-cover bg-center mix-blend-overlay"></div>
           <div className="relative">
             <h2 className="text-3xl font-['Cormorant_Garamond'] text-sage-50 mb-8">
               Begin Your Wellness Journey
             </h2>
-            <div className="space-y-4 mb-8">
+            {/* <div className="space-y-4 mb-8">
               <p className="text-xl text-sage-200">📍 Washington DC, 20009</p>
               <p className="text-xl text-sage-200">📞 732-476-4754</p>
-            </div>
-            <Link to="https://calendly.com/vedichealingwellness">
-              <button className="bg-emerald-600 hover:bg-emerald-700 text-sage-50 px-8 py-4 rounded-full text-lg font-medium transition-all hover:shadow-xl hover:scale-105 flex items-center gap-2 mx-auto border border-emerald-500/30">
-                Book an Appointment Today <ArrowRight className="w-5 h-5" />
-              </button>
-            </Link>
+            </div> */}
+
+            <LocationPickerButton className="bg-emerald-600 hover:bg-emerald-700 text-sage-50 px-8 py-4 rounded-full text-lg font-medium transition-all hover:shadow-xl hover:scale-105 flex items-center gap-2 mx-auto border border-emerald-500/30">
+              Book your Appointment Today <ArrowRight className="w-5 h-5" />
+            </LocationPickerButton>
           </div>
         </div>
       </div>

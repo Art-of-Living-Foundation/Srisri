@@ -76,12 +76,12 @@ function Reviews() {
   return (
     <div className="pt-20 bg-gradient-to-b from-sage-50 to-sage-100/50">
       {/* Hero Section */}
-      <div className="relative py-24 bg-gradient-to-br from-sage-900 via-emerald-900 to-sage-900">
+      <div className="relative py-12 bg-gradient-to-br from-sage-900 via-emerald-900 to-sage-900">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&q=80')] opacity-10 bg-cover bg-center mix-blend-overlay" />
         <div className="max-w-6xl mx-auto px-4 text-center relative">
-          <img src="/logo.jpeg" alt="logo" className="w-40 h-20 mx-auto mb-8" />
+          <img src="/Logo.png" alt="logo" className="w-40 h-20 mx-auto mb-8" />
           <h1 className="text-5xl md:text-7xl font-['Cormorant_Garamond'] text-sage-50 mb-6">
-            Sacred Experiences
+            Testimonials & Reviews 🌟
           </h1>
           <p className="text-2xl text-sage-200 max-w-3xl mx-auto font-['Cormorant_Garamond'] italic">
             Real Stories of Healing & Transformation

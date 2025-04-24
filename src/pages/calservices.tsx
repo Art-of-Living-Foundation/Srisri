@@ -1,15 +1,8 @@
 import React from "react";
-import {
-  ArrowRight,
-  Waves,
-  Sun,
-  Flower2,
-  Search,
-  DollarSign,
-} from "lucide-react";
+import { ArrowRight, Waves, Sun, Flower2, DollarSign } from "lucide-react";
 import { Link } from "react-router-dom";
 
-interface ServiceCardProps {
+interface CalServiceCardProps {
   icon: React.ReactNode;
   title: string;
   description: string;
@@ -21,7 +14,7 @@ interface ServiceCardProps {
   price: string;
 }
 
-function ServiceCard({
+function CalServiceCard({
   icon,
   title,
   description,
@@ -31,7 +24,7 @@ function ServiceCard({
   bgGradient,
   link,
   price,
-}: ServiceCardProps) {
+}: CalServiceCardProps) {
   return (
     <div
       className={`${
@@ -82,24 +75,23 @@ function ServiceCard({
   );
 }
 
-function Services() {
+function CalServices() {
   const services = [
-    {
-      icon: <Search className="w-full h-full" />,
-      title: "Initial Wellness Consultation",
-      description:
-        "Start your wellness journey with a 30-minute consultation. Our expert will assess your health goals and guide you toward the best Ayurvedic therapies—like Abhyanga, Shirodhara, Basti, or Marma—based on your unique needs.",
-
-      benefits: [
-        "Personalized 30-minute consultation",
-        "Great starting point if you're new to Ayurveda",
-      ],
-      duration: "30 minutes",
-      iconClassName: "text-purple-600",
-      bgGradient: "bg-gradient-to-br from-purple-50/95 to-violet-50/95",
-      link: "https://calendly.com/srisritattvanj/30min?back=1&month=2025-04",
-      price: "$0",
-    },
+    // {
+    //   icon: <Search className="w-full h-full" />,
+    //   title: "30-Min Initial Ayurvedic Consultation",
+    //   description:
+    //     "Unsure which treatment is right for you? Our expert will assess your dosha (body type) and guide you toward the best Ayurvedic practices for your health.",
+    //   benefits: [
+    //     "Personalized wellness assessment",
+    //     "Custom treatment recommendations",
+    //   ],
+    //   duration: "30 minutes",
+    //   iconClassName: "text-purple-600",
+    //   bgGradient: "bg-gradient-to-br from-purple-50/95 to-violet-50/95",
+    //   link: "https://calendly.com/srisritattvaca",
+    //   price: "$10",
+    // },
     {
       icon: <Waves className="w-full h-full" />,
       title: "Abhyanga – Ayurvedic Oil Massage",
@@ -112,8 +104,8 @@ function Services() {
       duration: "60 minutes",
       iconClassName: "text-cyan-600",
       bgGradient: "bg-gradient-to-br from-cyan-50/95 to-blue-50/95",
-      link: "https://calendly.com/srisritattvanj/abhyanga-ayurvedic-massage?back=1&month=2025-04",
-      price: "$130",
+      link: "https://calendly.com/srisritattvaca/new-meeting?back=1&month=2025-04",
+      price: "$140",
     },
     {
       icon: <Sun className="w-full h-full" />,
@@ -127,8 +119,8 @@ function Services() {
       duration: "60 minutes",
       iconClassName: "text-amber-600",
       bgGradient: "bg-gradient-to-br from-amber-50/95 to-yellow-50/95",
-      link: "https://calendly.com/srisritattvanj/abhyanga-ayurvedic-massage-clone?back=1&month=2025-04",
-      price: "$120",
+      link: "https://calendly.com/srisritattvaca/ayurvedic-abhyanga-clone-1?back=1&month=2025-04",
+      price: "$150",
     },
     {
       icon: <Waves className="w-full h-full" />,
@@ -143,7 +135,7 @@ function Services() {
       price: "$120",
       iconClassName: "text-emerald-600",
       bgGradient: "bg-gradient-to-br from-emerald-50/95 to-green-50/95",
-      link: "https://calendly.com/srisritattvanj/greeva-basti-neck-therapy-clone-1?back=1&month=2025-04",
+      link: "https://calendly.com/srisritattvaca/kati-basti-clone?back=1&month=2025-04",
     },
     {
       icon: <Waves className="w-full h-full" />,
@@ -158,7 +150,7 @@ function Services() {
       price: "$120",
       iconClassName: "text-rose-600",
       bgGradient: "bg-gradient-to-br from-rose-50/95 to-red-50/95",
-      link: "https://calendly.com/srisritattvanj/shirodhara-clone?back=1&month=2025-04",
+      link: "https://calendly.com/srisritattvaca/ayurvedic-abhyanga-clone?back=1&month=2025-04",
     },
     {
       icon: <Waves className="w-full h-full" />,
@@ -173,7 +165,7 @@ function Services() {
       price: "$120",
       iconClassName: "text-purple-600",
       bgGradient: "bg-gradient-to-br from-purple-50/95 to-violet-50/95",
-      link: "https://calendly.com/srisritattvanj/greeva-basti-neck-therapy-clone?back=1&month=2025-04",
+      link: "https://calendly.com/srisritattvaca/greeva-basti-clone?back=1&month=2025-04",
     },
     {
       icon: <Flower2 className="w-full h-full" />,
@@ -187,8 +179,8 @@ function Services() {
       duration: "60 minutes",
       iconClassName: "text-emerald-600",
       bgGradient: "bg-gradient-to-br from-emerald-50/95 to-green-50/95",
-      link: "https://calendly.com/srisritattvanj/basti-clone?back=1&month=2025-04",
-      price: "$110",
+      link: "https://calendly.com/srisritattvaca/shirodhara-clone?back=1&month=2025-04",
+      price: "$125",
     },
   ];
 
@@ -203,7 +195,7 @@ function Services() {
             Our Services
           </h1>
           <h2 className="text-2xl md:text-2xl font-['Cormorant_Garamond'] text-sage-50 mb-6">
-            📍 New Jersey
+            📍 California
           </h2>
           <p className="text-2xl text-sage-200 max-w-3xl mx-auto font-['Cormorant_Garamond'] italic">
             Ancient Wisdom for Modern Wellness
@@ -215,7 +207,7 @@ function Services() {
       <div className="max-w-6xl mx-auto px-4 py-24">
         <div className="grid lg:grid-cols-2 gap-8">
           {services.map((service, index) => (
-            <ServiceCard key={index} {...service} />
+            <CalServiceCard key={index} {...service} />
           ))}
         </div>
 
@@ -245,7 +237,7 @@ function Services() {
               <p className="text-xl text-sage-200">📍 Washington DC, 20009</p>
               <p className="text-xl text-sage-200">📞 732-476-4754</p>
             </div> */}
-            <Link to="https://calendly.com/srisritattvanj">
+            <Link to="https://calendly.com/srisritattvaca">
               <button className="bg-emerald-600 hover:bg-emerald-700 text-sage-50 px-8 py-4 rounded-full text-lg font-medium transition-all hover:shadow-xl hover:scale-105 flex items-center gap-2 mx-auto border border-emerald-500/30">
                 Book your Appointment Today <ArrowRight className="w-5 h-5" />
               </button>
@@ -257,4 +249,4 @@ function Services() {
   );
 }
 
-export default Services;
+export default CalServices;

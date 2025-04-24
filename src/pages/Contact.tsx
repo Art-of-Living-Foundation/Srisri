@@ -6,6 +6,8 @@ function Contact() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [location, setLocation] = useState("");
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<
     "idle" | "success" | "error"
@@ -23,6 +25,7 @@ function Contact() {
         {
           from_name: name,
           from_email: email,
+          location: location,
           message: message,
           to_name: "Vedic Healing & Wellness",
         },
@@ -43,10 +46,10 @@ function Contact() {
   return (
     <div className="pt-20 bg-gradient-to-b from-sage-50 to-sage-100/50">
       {/* Hero Section */}
-      <div className="relative py-24 bg-gradient-to-br from-sage-900 via-emerald-900 to-sage-900">
+      <div className="relative py-12 bg-gradient-to-br from-sage-900 via-emerald-900 to-sage-900">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&q=80')] opacity-10 bg-cover bg-center mix-blend-overlay" />
         <div className="max-w-6xl mx-auto px-4 text-center relative">
-          <img src="/logo.jpeg" alt="logo" className="w-40 h-20 mx-auto mb-8" />
+          <img src="/Logo.png" alt="logo" className="w-40 h-20 mx-auto mb-8" />
           <h1 className="text-5xl md:text-7xl font-['Cormorant_Garamond'] text-sage-50 mb-6">
             Connect With Us
           </h1>
@@ -61,78 +64,102 @@ function Contact() {
         <div className="grid lg:grid-cols-2 gap-10 md:gap-16">
           {/* Contact Information */}
           <div>
-            <h2 className="text-4xl font-['Cormorant_Garamond'] text-sage-900 mb-12">
+            {/* <h2 className="text-4xl font-['Cormorant_Garamond'] text-sage-900 mb-12">
               Visit Our Sacred Space
-            </h2>
+            </h2> */}
 
-            <div className="space-y-8 mb-12">
-              <div className="flex items-start gap-4">
-                <MapPin className="w-6 h-6 text-emerald-600 mt-1" />
-                <div>
-                  <h3 className="text-xl font-['Cormorant_Garamond'] text-sage-900 mb-2">
-                    Location
-                  </h3>
-                  <p className="text-sage-700 text-lg">
-                    Sri Sri Tattva Wellness
-                    <br />
-                    2401 15th St NW
-                    <br />
-                    Washington, DC, 20009
-                  </p>
+            <div className="space-y-12 mb-12">
+              {/* New Jersey Section */}
+              <div>
+                <h2 className="text-3xl md:text-4xl font-['Cormorant_Garamond'] text-sage-50 mb-6 tracking-wide flex items-center gap-2">
+                  <span className="text-emerald-400">📍</span>
+                  <span className="text-sage-900">New Jersey</span>
+                </h2>
+
+                <div className="space-y-6">
+                  <div className="flex items-start gap-4">
+                    <Phone className="w-6 h-6 text-emerald-600 mt-1" />
+                    <div>
+                      <h3 className="text-xl font-['Cormorant_Garamond'] text-sage-900 mb-1">
+                        Phone
+                      </h3>
+                      <p className="text-sage-700 text-lg">
+                        <a
+                          href="tel:732-476-4754"
+                          className="hover:text-emerald-700 transition-colors"
+                        >
+                          732-476-4754
+                        </a>
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <Mail className="w-6 h-6 text-emerald-600 mt-1" />
+                    <div>
+                      <h3 className="text-xl font-['Cormorant_Garamond'] text-sage-900 mb-1">
+                        Email
+                      </h3>
+                      <p className="text-sage-700 text-lg">
+                        <a
+                          href="mailto:swathishreey@artofliving.org"
+                          className="hover:text-emerald-700 transition-colors"
+                        >
+                          swathishreey@artofliving.org
+                        </a>
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              <div className="flex items-start gap-4">
-                <Phone className="w-6 h-6 text-emerald-600 mt-1" />
-                <div>
-                  <h3 className="text-xl font-['Cormorant_Garamond'] text-sage-900 mb-2">
-                    Phone
-                  </h3>
-                  <p className="text-sage-700 text-lg">
-                    <a
-                      href="tel:732-476-4754"
-                      className="hover:text-emerald-700 transition-colors"
-                    >
-                      732-476-4754
-                    </a>
-                  </p>
-                </div>
-              </div>
+              {/* California Section */}
+              <div>
+                <h2 className="text-3xl md:text-4xl font-['Cormorant_Garamond'] text-sage-50 mb-6 tracking-wide flex items-center gap-2">
+                  <span className="text-emerald-400">📍</span>
+                  <span className="text-sage-900">California</span>
+                </h2>
 
-              <div className="flex items-start gap-4">
-                <Mail className="w-6 h-6 text-emerald-600 mt-1" />
-                <div>
-                  <h3 className="text-xl font-['Cormorant_Garamond'] text-sage-900 mb-2">
-                    Email
-                  </h3>
-                  <p className="text-sage-700 text-lg">
-                    <a
-                      href="mailto:swathi@vedicwellness.com"
-                      className="hover:text-emerald-700 transition-colors"
-                    >
-                      swathishree@srisritattvawellness.com
-                    </a>
-                  </p>
-                </div>
-              </div>
+                <div className="space-y-6">
+                  <div className="flex items-start gap-4">
+                    <Phone className="w-6 h-6 text-emerald-600 mt-1" />
+                    <div>
+                      <h3 className="text-xl font-['Cormorant_Garamond'] text-sage-900 mb-1">
+                        Phone
+                      </h3>
+                      <p className="text-sage-700 text-lg">
+                        <a
+                          href="tel:408-387-2450"
+                          className="hover:text-emerald-700 transition-colors"
+                        >
+                          408-387-2450
+                        </a>
+                      </p>
+                    </div>
+                  </div>
 
-              <div className="flex items-start gap-4">
-                <Clock className="w-6 h-6 text-emerald-600 mt-1" />
-                <div>
-                  <h3 className="text-xl font-['Cormorant_Garamond'] text-sage-900 mb-2">
-                    Hours
-                  </h3>
-                  <p className="text-sage-700 text-lg">
-                    Monday – Saturday
-                    <br />
-                    9:00 AM – 6:00 PM
-                  </p>
+                  <div className="flex items-start gap-4">
+                    <Mail className="w-6 h-6 text-emerald-600 mt-1" />
+                    <div>
+                      <h3 className="text-xl font-['Cormorant_Garamond'] text-sage-900 mb-1">
+                        Email
+                      </h3>
+                      <p className="text-sage-700 text-lg">
+                        <a
+                          href="mailto:vanithat@artofliving.org"
+                          className="hover:text-emerald-700 transition-colors"
+                        >
+                          vanithat@artofliving.org
+                        </a>
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
 
             {/* Map */}
-            <div className="rounded-3xl overflow-hidden shadow-lg border border-sage-100 h-[400px]">
+            {/* <div className="rounded-3xl overflow-hidden shadow-lg border border-sage-100 h-[400px]">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3104.099723663753!2d-77.0350186!3d38.9216981!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b7b7de75b9db7d%3A0xefceef9fe243ffa6!2sSri%20Sri%20Tattva%20USA!5e0!3m2!1sen!2sin!4v1744125683394!5m2!1sen!2sin"
                 width="100%"
@@ -153,7 +180,7 @@ function Contact() {
               >
                 View on Google Maps <ArrowRight className="w-5 h-5" />
               </a>
-            </div>
+            </div> */}
           </div>
 
           {/* Contact Form */}
@@ -191,6 +218,25 @@ function Contact() {
                   className="w-full px-4 py-3 rounded-xl border border-sage-200 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition-all"
                   placeholder="Your email"
                 />
+              </div>
+
+              <div>
+                <label htmlFor="location" className="block text-sage-700 mb-2">
+                  Location
+                </label>
+                <select
+                  id="location"
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
+                  required
+                  className="w-full px-4 py-3 rounded-xl border border-sage-200 bg-white text-sage-800 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition-all"
+                >
+                  <option value="" disabled>
+                    Select a location
+                  </option>
+                  <option value="newjersey">New Jersey</option>
+                  <option value="california">California</option>
+                </select>
               </div>
 
               <div>
